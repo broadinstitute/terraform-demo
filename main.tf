@@ -10,6 +10,14 @@ data "google_iam_policy" "admin" {
   }
 
   binding {
+    role    = "roles/viewer"
+
+    members = [
+      "group:bits@broadinstitute.org",
+    ]
+  }
+
+  binding {
     role = "roles/compute.osLogin"
 
     members = [
