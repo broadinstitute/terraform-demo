@@ -24,6 +24,21 @@ data "google_iam_policy" "admin" {
       "group:devnull@broadinstitute.org",
     ]
   }
+
+  binding {
+    members = [
+      "serviceAccount:service-${data.google_project.demo.number}@compute-system.iam.gserviceaccount.com",
+    ]
+    role    = "roles/compute.serviceAgent"
+  }
+
+  binding {
+    members = [
+        "serviceAccount:${data.google_project.demo.number}-compute@developer.gserviceaccount.com",
+        "serviceAccount:${data.google_project.demo.number}@cloudservices.gserviceaccount.com",
+      ]
+    role    = "roles/editor"
+  }
 }
 
 resource "google_project_iam_policy" "default_policy" {

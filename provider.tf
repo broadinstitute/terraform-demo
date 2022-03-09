@@ -7,6 +7,8 @@ provider "google" {
   region  = var.region
 }
 
+data "google_project" "demo" {}
+
 # Turn on some APIs
 # Get the full list of service URLs from: gcloud services list --available
 resource "google_project_service" "compute" {
